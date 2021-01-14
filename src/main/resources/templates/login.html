@@ -1,37 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name="description" content="">
-		<meta name="author" content="">
-		<title>Library management system</title>
-		<!-- Bootstrap core CSS -->
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<!-- Custom styles for this template -->
-		<link href="css/signin.css" rel="stylesheet">
-	</head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图书馆登录页面</title>
+    <link rel="stylesheet" th:href="@{/css/font.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/xadmin.css}">
+    <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/lib/layui/layui.js}"></script>
+</head>
+<body class="login-bg">
 
-	<body class="text-center">
-		<form class="form-signin" th:action="@{/login}" method="get">
-			<img class="mb-4" src="img/bootstrap-solid.svg" alt="" width="72" height="72">
-			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-			<span th:text="${session.msg}" style="color: red"></span>
-			<label class="sr-only">Username</label>
-			<input type="text" class="form-control" placeholder="username" required="" autofocus="" name="username">
-			<label class="sr-only">Password</label>
-			<input type="password" class="form-control" placeholder="password" required="" name="password">
-			<div class="checkbox mb-3">
-				<label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-			</div>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-			<p class="mt-5 mb-3 text-muted">© 2020-2021</p>
-			<a class="btn btn-sm">中文</a>
-			<a class="btn btn-sm">English</a>
-		</form>
+<!--<p1>Hello World!</p1>-->
 
-	</body>
+<!--<hr>-->
 
+<div class="login layui-anim layui-anim-up">
+    <div class="message">图书馆账号登录</div>
+    <div id="darkbannerwrap"></div>
+
+    <form method="post" class="layui-form" th:action="@{/login}" >
+<!--        <span th:text="${session.msg}" style="color: red" ></span>-->
+        <input name="username" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
+        <hr class="hr15">
+        <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input" >
+        <hr class="hr15">
+        <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
+        <hr class="hr20" >
+    </form>
+</div>
+
+<script th:inline="javascript">
+
+
+    var msg = [[${session.msg}]];
+    if (msg != null){
+        alert(msg);
+    }
+
+
+
+
+</script>
+
+</body>
 </html>
