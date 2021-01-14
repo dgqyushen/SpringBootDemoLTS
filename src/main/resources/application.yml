@@ -5,7 +5,14 @@ spring:
     username: root
     password: 111111
     type: com.alibaba.druid.pool.DruidDataSource
-
+  thymeleaf:
+    cache: false
+#    prefix: /templates/
+#    suffix: .html
+    encoding: UTF-8
+    mode: HTML
+  mvc:
+    static-path-pattern: /**
 
 #    minIdle: 5
 #    maxActive: 20
@@ -27,4 +34,3 @@ mybatis:
 #logging:
 #  level:
 #    com.lucifer.springboot.cache.mapper: debug
-
