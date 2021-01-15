@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,15 +15,16 @@ public class UserController {
     @Autowired
     UserService userServiceImpl;
 
-    @RequestMapping("/")
-    public String login(){
-        return "login";
-    }
+//    @RequestMapping("/")
+//    public String login(){
+//        return "login";
+//    }
 
 
     @RequestMapping("/login")
     public String dashBoard(@RequestParam("username")String username, @RequestParam("password")String password, HttpSession httpSession){
         User user = userServiceImpl.getUserByUserName(username);
+//        User user = new UserServiceImpl().getUserByUserName(username);
         if(user == null){
             httpSession.setAttribute("msg","无此用户");
             return "login";
@@ -34,7 +34,7 @@ public class UserController {
            httpSession.setAttribute("user",user);
 //           已在浏览器的session中放置了User对象
 //            System.out.println((User)httpSession.getAttribute("user"));
-            return "index";
+            return "main";
         }else {
             httpSession.setAttribute("msg","密码输入错误");
             System.out.println("已存入model");
@@ -42,6 +42,11 @@ public class UserController {
 
 
         return "login";
+    }
+
+    @RequestMapping("/404")
+    public String error(){
+        return "404";
     }
 
 

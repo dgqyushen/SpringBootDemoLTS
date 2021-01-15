@@ -9,10 +9,20 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class LoginConfig implements WebMvcConfigurer {
 
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns("/login.html","/");
-
-    }
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns(
+//                "/login.html",
+//                "/main.html",
+//                "/",
+//                "/css/**",
+//                "/font/**",
+//                "/images/**",
+//                "/js/**",
+//                "/lay/**",
+//                "/lib/**"
+//                );
+//
+//    }
 
     }
