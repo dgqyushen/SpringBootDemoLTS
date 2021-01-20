@@ -11,6 +11,7 @@
     <link rel="stylesheet" th:href="@{/css/xadmin.css}">
     <script type="text/javascript" th:src="@{https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/lib/layui/layui.js}"></script>
+
 </head>
 <body class="login-bg">
 
@@ -24,12 +25,21 @@
 
     <form method="post" class="layui-form" th:action="@{/login}" >
 <!--        <span th:text="${session.msg}" style="color: red" ></span>-->
-        <input name="username" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" required>
+        <input name="username" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" required autocomplete="off">
         <hr class="hr15">
-        <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input" required>
+        <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input" required autocomplete="off">
         <hr class="hr15">
         <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
         <hr class="hr20" >
+
+        <div class="layui-btn-container">
+            <button type="button" class="layui-btn  layui-btn-sm layui-col-md2 layui-col-md-offset10">
+<!--                注册-->
+                <a href="javascript:;" style="color: #FFFFFF" th:href="@{/toregister}">注册</a>
+            </button>
+
+        </div>
+
     </form>
 </div>
 
@@ -37,10 +47,24 @@
 
 
     var msg = [[${session.msg}]];
-    if (msg != null){
-        alert(msg);
-    }
+    var logout = [[${session.logout}]];
+    var create = [[${session.create}]];
 
+
+    layui.use(['layer', 'form'], function(){
+        var layer = layui.layer
+
+        if(msg != null){
+            layer.msg(msg);
+        }
+        if(logout != null){
+            layer.msg(logout);
+        }
+        if(create != null){
+            layer.msg(create);
+        }
+
+    });
 
 
 

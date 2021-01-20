@@ -13,6 +13,13 @@ spring:
     mode: HTML
   mvc:
     static-path-pattern: /**
+  web:
+    resources:
+      static-locations: classpath:/static/
+
+
+
+
 
 #    minIdle: 5
 #    maxActive: 20
@@ -34,3 +41,7 @@ mybatis:
 #logging:
 #  level:
 #    com.lucifer.springboot.cache.mapper: debug
+
+logging:
+  level:
+    com.qian.springbootlibrary.mapper : debug

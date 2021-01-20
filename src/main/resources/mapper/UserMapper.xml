@@ -9,6 +9,10 @@
 INSERT INTO `library`.`user` (`username`, `password`, `root`) VALUES (#{username}, #{password}, ${root});
     </insert>
 
+    <insert id="addUserInfo">
+        insert into library.userinfo(id, city, email, sex) VALUES (#{id},#{city},#{email},#{sex});
+    </insert>
+
     <update id="updateUser" parameterType="com.qian.springbootlibrary.pojo.User">
         update library.user
         set username=#{username},
@@ -16,6 +20,15 @@ INSERT INTO `library`.`user` (`username`, `password`, `root`) VALUES (#{username
             root=#{root}
         where id = #{id};
     </update>
+    <update id="setUserPersonalId" parameterType="map">
+        update library.user
+        set personal_id=#{personal_id}
+        where id = #{id};
+    </update>
+
+    <!--    <update id="setUserPersonalId" parameterType="">-->
+<!--        -->
+<!--    </update>-->
 
     <delete id="deleteUser" parameterType="int">
         delete from library.user where id = #{id};
@@ -30,5 +43,7 @@ INSERT INTO `library`.`user` (`username`, `password`, `root`) VALUES (#{username
     <select id="getUserByUserName" resultType="com.qian.springbootlibrary.pojo.User" parameterType="string">
         select * from library.user where username = #{username}
     </select>
+
+
 
 </mapper>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <link rel="stylesheet" th:href="@{/css/layui.css}"  media="all">
+    <style>
+        .layui-form-label{
+            float:left;display:block;padding:9px 15px;width:100px;font-weight:400;line-height:20px;text-align:right
+        }
+    </style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!-- 头部 -->
+    <div th:fragment="layui-head">
+        <div class="layui-header">
+            <div class="layui-logo">图书馆管理项目</div>
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item"><a th:href="@{/tomain}">回到首页</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 侧边栏 -->
+    <div th:fragment="layui-side">
+        <div class="layui-side layui-bg-black layui-nav-tree" >
+
+        </div>
+    </div>
+
+
+
+    <!-- 内容页-->
+    <div class="layui-body" >
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>注册用户</legend>
+        </fieldset>
+
+        <form class="layui-form" th:action="@{/register}" method="post">
+            <div class="layui-form-item">
+                <label class="layui-form-label">请输入账号</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="username" required  lay-verify="required" placeholder="请输入账号" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">密码框</label>
+                <div class="layui-input-inline">
+                    <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label ">请再次输入密码</label>
+                <div class="layui-input-inline">
+                    <input type="password" name="rePassword" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                </div>
+                <!--                <div class="layui-form-mid layui-word-aux">辅助文字</div>-->
+            </div>
+
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+
+
+    <!-- 底部 -->
+    <div th:insert="~{common/foot::layui-foot}"></div>
+</div>
+
+
+
+</div>
+
+
+
+<script type="text/javascript" th:src="@{/layui.all.js}" charset="utf-8"></script>
+<script th:inline="javascript">
+
+
+</script>
+</body>
+</html>

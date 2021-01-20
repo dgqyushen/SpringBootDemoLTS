@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>layout 后台大布局 - Layui</title>
+    <link rel="stylesheet" th:href="@{/css/layui.css}">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+
+    <div th:fragment="layui-side">
+        <div class="layui-side layui-bg-black layui-nav-tree" >
+
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+            <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+            <li class="layui-nav-item ">
+                <a href="javascript:">图书管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;">查询所有书籍</a></dd>
+                    <dd><a href="javascript:;">添加书籍</a></dd>
+                    <dd><a href="javascript:;">管理书籍</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">用户管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;" th:href="@{/tousertables}">查询所有用户</a></dd>
+                    <dd><a href="javascript:;">增加用户</a></dd>
+                    <dd><a href="javascript:;">管理用户</a></dd>
+                </dl>
+            </li>
+            <!-- <li class="layui-nav-item"><a href="">产品</a></li>
+            <li class="layui-nav-item"><a href="">大数据</a></li> -->
+        </ul>
+    </div>
+    </div>
+
+
+
+</div>
+
+
+<script th:src="@{/layui.js}"></script>
+<script th:inline="javascript">
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+</script>
+<!--<script th:src="@{/layui.all.js}"></script>-->
+<!--<script th:inline="javascript">-->
+<!--    //JavaScript代码区域-->
+<!--    ;!function(){-->
+<!--        var form = layui.form-->
+<!--            ,layer = layui.layer-->
+<!--            ,element = layui.element-->
+<!--            ,form = layui.form-->
+<!--            ,table = layui.table;-->
+
+<!--        layui.element.init();-->
+<!--    }();-->
+<!--</script>-->
+
+
+
+</body>
+</html>

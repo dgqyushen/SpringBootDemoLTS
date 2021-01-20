@@ -1,14 +1,16 @@
 package com.qian.springbootlibrary.mapper;
 
 import com.qian.springbootlibrary.pojo.User;
+import com.qian.springbootlibrary.pojo.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 @Repository
-public interface UserMapper {
+public interface UserMapper  {
     List<User> getAllUser();
 
     User getUserById(int id);
@@ -20,4 +22,10 @@ public interface UserMapper {
     int updateUser(User user);
 
     User getUserByUserName(String username);
+
+    int addUserInfo(UserInfo userInfo);
+
+    int setUserPersonalId(Map map);
+
+//    ViewUser getAllInformation();
 }

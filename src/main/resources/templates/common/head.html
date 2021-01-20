@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>layout 后台大布局 - Layui</title>
+    <link rel="stylesheet" th:href="@{/css/layui.css}">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div th:fragment="layui-head">
+        <div class="layui-header">
+        <div class="layui-logo">图书馆管理项目</div>
+         <ul class="layui-nav layui-layout-left">
+             <li class="layui-nav-item"><a th:href="@{/tomain}">回到首页</a></li>
+         </ul>
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item" th:text="'欢迎回来,'+${session.username}"></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">关于用户</a>
+                <dl class="layui-nav-child">
+                    <dd><a th:href="@{/touserinfo}">修改用户资料</a></dd>
+                    <dd><a th:href="@{/logout}">登出</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+    </div>
+
+
+</div>
+
+
+<script th:src="@{/layui.js}"></script>
+<script th:inline="javascript">
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+</script>
+</body>
+</html>
