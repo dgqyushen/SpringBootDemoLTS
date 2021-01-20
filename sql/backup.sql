@@ -1,6 +1,6 @@
 /*
 SQLyog Community v13.1.6 (64 bit)
-MySQL - 8.0.20 : Database - library
+MySQL - 8.0.22 : Database - library
 *********************************************************************
 */
 
@@ -44,16 +44,35 @@ CREATE TABLE `user` (
   `username` varchar(20) NOT NULL COMMENT '用户账号',
   `password` varchar(20) NOT NULL COMMENT '用户密码',
   `root` tinyint NOT NULL COMMENT '判断用户是否为管理员',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  `personal_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `personal_id` (`personal_id`),
+  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`personal_id`) REFERENCES `userinfo` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`username`,`password`,`root`) values 
-(1,'dgqyushen','A731205b',0),
-(2,'dgqrunwen','A731205b',0),
-(4,'dgqyushen01','A205b',1),
-(5,'dgq123','123456',1);
+insert  into `user`(`id`,`username`,`password`,`root`,`personal_id`) values 
+(1,'root','111111',1,1),
+(2,'dgqyushen','111111',0,2);
+
+/*Table structure for table `userinfo` */
+
+DROP TABLE IF EXISTS `userinfo`;
+
+CREATE TABLE `userinfo` (
+  `id` int NOT NULL,
+  `city` varchar(10) DEFAULT NULL,
+  `email` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `sex` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `userinfo` */
+
+insert  into `userinfo`(`id`,`city`,`email`,`sex`) values 
+(1,'东莞','2446682260@qq.com',1),
+(2,'深圳','2446682260@qq.com',0);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

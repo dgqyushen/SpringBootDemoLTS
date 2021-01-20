@@ -74,6 +74,7 @@ public class UserServiceImpl implements UserService {
             map.put("isPasswordCorrect",false);
         }
         map.put("username",user.getUsername());
+        map.put("user",user);
         return map;
 
 
