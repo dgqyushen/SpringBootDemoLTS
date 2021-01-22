@@ -4,6 +4,7 @@ import com.qian.springbootlibrary.mapper.UserMapper;
 import com.qian.springbootlibrary.pojo.User;
 import com.qian.springbootlibrary.pojo.UserInfo;
 import com.qian.springbootlibrary.service.UserService;
+import com.qian.springbootlibrary.vo.ViewUser;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,19 +14,18 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @SpringBootTest
-class SpringbootlibraryApplicationTests {
+class SpringBootLibraryApplicationTests {
 
     @Autowired
-    UserService userServiceImpl;
+    UserMapper userMapper;
 
 
     @Test
     void contextLoads() {
-        Map map = new ConcurrentHashMap<String,Integer>();
-        map.put("personal_id",1);
-        map.put("id",3);
-        int i = userServiceImpl.setUserPersonalId(map);
-        System.out.println(i);
+        List<ViewUser> allViewUser = userMapper.getAllViewUser();
+        for (ViewUser viewUser : allViewUser) {
+            System.out.println(viewUser);
+        }
 
 
     }

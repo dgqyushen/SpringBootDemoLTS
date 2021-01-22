@@ -103,7 +103,6 @@ public class UserController {
         return "register";
     }
 
-
     @RequestMapping("/register")
     public String getRegister(@ModelAttribute(value = "userinfo") RegisterUser registerUser,HttpSession httpSession){
 //        System.out.println(registerUser);

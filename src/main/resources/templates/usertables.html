@@ -49,16 +49,16 @@
             ,height: 780
             ,url: 'http://localhost:8080/getallusers' //数据接口
             ,page: true //开启分页
-            ,parseData: function (res) {
-                    // console.log(res);
-                    return{
-                        "code":0,
-                        "msg":"",
-                        //数据库查到的多少条数据
-                        "count":"1000",
-                        "data":res
-                    }
-            }
+            // ,parseData: function (res) {
+            //         // console.log(res);
+            //         return{
+            //             "code":0,
+            //             "msg":"",
+            //             //数据库查到的多少条数据
+            //             "count":"1000",
+            //             "data":res
+            //         }
+            // }
             ,cols: [
                 [ //表头
                 {field: 'id', title: 'ID', width:180, sort: true, fixed: 'left'}

@@ -2,6 +2,7 @@ package com.qian.springbootlibrary.service;
 
 import com.qian.springbootlibrary.pojo.User;
 import com.qian.springbootlibrary.pojo.UserInfo;
+import com.qian.springbootlibrary.vo.ViewUser;
 
 import java.util.List;
 import java.util.Map;
@@ -24,4 +25,6 @@ public interface UserService {
     int setUserPersonalId(Map map);
 
     Map<String, Object> isUserLogin(String username, String password);
+
+    List<ViewUser> getAllViewUser();
 }

@@ -3,6 +3,7 @@ package com.qian.springbootlibrary.service;
 import com.qian.springbootlibrary.mapper.UserMapper;
 import com.qian.springbootlibrary.pojo.User;
 import com.qian.springbootlibrary.pojo.UserInfo;
+import com.qian.springbootlibrary.vo.ViewUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -76,8 +77,10 @@ public class UserServiceImpl implements UserService {
         map.put("username",user.getUsername());
         map.put("user",user);
         return map;
+    }
 
-
-
+    @Override
+    public List<ViewUser> getAllViewUser() {
+        return userMapper.getAllViewUser();
     }
 }

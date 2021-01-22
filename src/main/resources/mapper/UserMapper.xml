@@ -44,6 +44,11 @@ INSERT INTO `library`.`user` (`username`, `password`, `root`) VALUES (#{username
         select * from library.user where username = #{username}
     </select>
 
+    <select id="getAllViewUser" resultType="com.qian.springbootlibrary.vo.ViewUser">
+        select a.id, a.username, a.`password`,a.root,b.city,b.email,b.sex
+        from `user` a left join userinfo b
+        on a.personal_id=b.id;
+    </select>
 
 
 </mapper>
