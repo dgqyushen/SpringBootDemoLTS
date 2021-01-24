@@ -30,5 +30,7 @@ public interface UserMapper  {
 
     List<ViewUser> getAllViewUser();
 
+    int updateUserInfo(Map map);
+
 //    ViewUser getAllInformation();
 }

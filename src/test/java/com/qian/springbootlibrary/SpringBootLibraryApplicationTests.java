@@ -16,18 +16,22 @@ import java.util.concurrent.ConcurrentHashMap;
 @SpringBootTest
 class SpringBootLibraryApplicationTests {
 
-    @Autowired
-    UserMapper userMapper;
-
-
-    @Test
-    void contextLoads() {
-        List<ViewUser> allViewUser = userMapper.getAllViewUser();
-        for (ViewUser viewUser : allViewUser) {
-            System.out.println(viewUser);
-        }
-
-
-    }
+//    @Autowired
+//    UserMapper userMapper;
+//    @Autowired
+//    UserInfo userInfo;
+//
+//
+//    @Test
+//    void contextLoads() {
+//        userInfo.setId(1);
+//        userInfo.setCity("广州");
+//        userInfo.setEmail("2446682260@qq.com");
+//        userInfo.setSex(true);
+//        int i = userMapper.updateUserInfo(userInfo);
+//        System.out.println(i);
+//
+//
+//    }
 
 }

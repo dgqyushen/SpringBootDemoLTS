@@ -87,6 +87,16 @@ public class UserController {
         //为了获取用户的id
         Map map = new ConcurrentHashMap<String,Integer>();
         User user = (User) httpSession.getAttribute("user");
+        if (user.getPersonal_id()>0){
+            map.put("id",user.getId());
+            map.put("city",userInfo.getCity());
+            map.put("email",userInfo.getEmail());
+            map.put("sex",userInfo.isSex());
+            System.out.println(userInfo);
+            userServiceImpl.updateUserInfo(map);
+            httpSession.setAttribute("msg","修改用户信息成功");
+            return "main";
+        }
         userInfo.setId(user.getId());
         map.put("personal_id",user.getId());
         map.put("id",user.getId());
@@ -118,6 +128,11 @@ public class UserController {
         httpSession.setAttribute("create","创建用户成功");
         httpSession.setAttribute("msg",null);
         return "login";
+    }
+
+    @RequestMapping("/tomangeusertables")
+    public String toManageUserTables(){
+        return "manageusertables";
     }
 
 

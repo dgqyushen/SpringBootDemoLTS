@@ -83,4 +83,9 @@ public class UserServiceImpl implements UserService {
     public List<ViewUser> getAllViewUser() {
         return userMapper.getAllViewUser();
     }
+
+    @Override
+    public int updateUserInfo(Map map) {
+        return userMapper.updateUserInfo(map);
+    }
 }

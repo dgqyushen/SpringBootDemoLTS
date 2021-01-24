@@ -25,6 +25,15 @@ INSERT INTO `library`.`user` (`username`, `password`, `root`) VALUES (#{username
         set personal_id=#{personal_id}
         where id = #{id};
     </update>
+    <update id="updateUserInfo" parameterType="map">
+        update library.userinfo
+        set city=#{city},
+            email=#{email},
+            sex=#{sex}
+        where id = #{id};
+
+
+    </update>
 
     <!--    <update id="setUserPersonalId" parameterType="">-->
 <!--        -->

@@ -27,4 +27,6 @@ public interface UserService {
     Map<String, Object> isUserLogin(String username, String password);
 
     List<ViewUser> getAllViewUser();
+
+    int updateUserInfo(Map map);
 }
