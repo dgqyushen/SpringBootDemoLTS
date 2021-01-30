@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -38,6 +39,16 @@ public class RestfulUserController {
         map.put("msg","");
         map.put("count",allViewUser.size());
         map.put("data",allViewUser);
+        return map;
+    }
+
+    @RequestMapping("/deleteuser")
+    public Map<String,Object> deleteUser(int id){
+        System.out.println(id);
+        userServiceImpl.deleteUser(id);
+        HashMap<String, Object> map = new HashMap<>();
+        map = map;
+        map.put("msg","删除成功");
         return map;
     }
 }

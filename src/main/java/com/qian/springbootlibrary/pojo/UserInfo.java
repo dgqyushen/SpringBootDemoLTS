@@ -13,7 +13,7 @@ public class UserInfo {
     private int id;
     private String city;
     private String email;
-    private boolean sex;
+    private String sex;
 //    private User user;
 
 //    public UserInfo(String city, String email, boolean sex) {

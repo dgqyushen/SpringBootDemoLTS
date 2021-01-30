@@ -10,18 +10,16 @@
 
 
 <div class="layui-layout layui-layout-admin">
-    <!-- 头部 -->
-    <div th:insert="~{common/head::layui-head}"></div>
-    <!-- 侧边栏 -->
-    <div th:insert="~{common/side::layui-side}"></div>
+
     <!-- 内容页-->
-    <div class="layui-body" id="vue-app">
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-            <legend>修改用户资料</legend>
-        </fieldset>
+    <div >
+<!--        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">-->
+<!--            <legend>修改用户资料</legend>-->
+<!--        </fieldset>-->
 
         <!--/*@thymesVar id="viewUser" type="com.qian.springbootlibrary.vo.RegisterUser"*/-->
-        <form class="layui-form" th:action="@{/setuserinfo}" method="post" th:object="${viewUser}">
+        <hr class="hr15">
+        <form class="layui-form" th:action="@{/resetuserinfo}" method="post" th:object="${viewUser}">
             <div class="layui-form-item">
                 <label class="layui-form-label">城市</label>
 
@@ -48,7 +46,7 @@
 
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                    <button class="layui-btn" lay-submit lay-filter="formDemo" >立即提交</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                 </div>
             </div>
@@ -58,8 +56,7 @@
 
 
     </div>
-    <!-- 底部 -->
-    <div th:insert="~{common/foot::layui-foot}"></div>
+
 
 </div>
 
@@ -80,6 +77,10 @@
 
         layui.element.init();
     }();
+
+
+
+
 
     // var vue = new Vue({
     //     el:'#vue-app',

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -91,7 +92,7 @@ public class UserController {
             map.put("id",user.getId());
             map.put("city",userInfo.getCity());
             map.put("email",userInfo.getEmail());
-            map.put("sex",userInfo.isSex());
+            map.put("sex",userInfo.getSex());
             System.out.println(userInfo);
             userServiceImpl.updateUserInfo(map);
             httpSession.setAttribute("msg","修改用户信息成功");
@@ -132,6 +133,28 @@ public class UserController {
 
     @RequestMapping("/tomangeusertables")
     public String toManageUserTables(){
+        return "manageusertables";
+    }
+
+    //管理员修改其他人的信息
+    @RequestMapping("/toedituserinfo")
+    public String toEditUserInfo(int id, HttpSession httpSession){
+        System.out.println(id);
+        httpSession.setAttribute("id",id);
+        return "member-edit";
+    }
+
+
+    @RequestMapping("/resetuserinfo")
+    public String resetUserInfo(@ModelAttribute(value = "userinfo") UserInfo userInfo, HttpSession httpSession){
+        HashMap<String, Object> map = new HashMap<>();
+        Integer id = (Integer) httpSession.getAttribute("id");
+        map.put("id",id);
+        map.put("city",userInfo.getCity());
+        map.put("email",userInfo.getEmail());
+        map.put("sex",userInfo.getSex());
+        userServiceImpl.updateUserInfo(map);
+        httpSession.setAttribute("msg","修改用户信息成功");
         return "manageusertables";
     }
 

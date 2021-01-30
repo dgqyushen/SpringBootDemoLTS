@@ -16,7 +16,7 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 //允许远端访问的域名
-                .allowedOrigins("http://localhost:8080","http://127.0.0.1:5500")
+                .allowedOrigins("http://localhost:8080","http://127.0.0.1:5500","http://0.0.0.0:8080")
                 //允许请求的方法("POST", "GET", "PUT", "OPTIONS", "DELETE")
                 .allowedMethods("*")
                 //允许请求头

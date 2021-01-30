@@ -14,5 +14,5 @@ public class ViewUser {
     private boolean root;
     private String city;
     private String email;
-    private boolean sex;
+    private String sex;
 }
