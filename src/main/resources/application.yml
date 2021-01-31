@@ -27,6 +27,15 @@ spring:
   devtools:
     restart:
       exclude: static/**
+  jpa:
+    show-sql: true
+    database: mysql
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+      #        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    database-platform: org.hibernate.dialect.MySQL8Dialect
 
 
 
@@ -54,4 +63,8 @@ mybatis:
 logging:
   level:
     com.qian.springbootlibrary.mapper : debug
+
+
+
+
 

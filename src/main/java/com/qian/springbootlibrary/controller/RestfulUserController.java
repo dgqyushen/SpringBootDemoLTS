@@ -1,6 +1,8 @@
 package com.qian.springbootlibrary.controller;
 
+import com.qian.springbootlibrary.pojo.Book;
 import com.qian.springbootlibrary.pojo.User;
+import com.qian.springbootlibrary.service.BookService;
 import com.qian.springbootlibrary.service.UserService;
 import com.qian.springbootlibrary.vo.ViewUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class RestfulUserController {
 
     @Autowired
     UserService userServiceImpl;
+
+    @Autowired
+    BookService bookServiceImpl;
 
     @RequestMapping("/getallusers")
     public Map<String,Object> getAllUser(){
@@ -51,4 +56,21 @@ public class RestfulUserController {
         map.put("msg","删除成功");
         return map;
     }
+
+    @RequestMapping("/getallbooks")
+    public Map<String,Object> getAllBook(){
+        Map map = new ConcurrentHashMap<String,Object>();
+        List<Book> allBook = bookServiceImpl.getAllBook();
+//        List<User> allUser = userServiceImpl.getAllUser();
+//
+//
+        map.put("code",0);
+        map.put("msg","");
+        map.put("count",allBook.size());
+        map.put("data",allBook);
+
+        return map;
+    }
+
+
 }

@@ -21,7 +21,7 @@
     <!-- 内容页-->
     <div class="layui-body" >
         <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-            <legend>查询用户页面</legend>
+            <legend>查询书籍页面</legend>
         </fieldset>
         <table id="demo" lay-filter="test">
 
@@ -46,26 +46,19 @@
         table.render({
             elem: '#demo'
             ,height: 580
-            ,url: 'http://localhost:8080/getallusers' //数据接口
+            ,url: 'http://localhost:8080/getallbooks' //数据接口
             ,page: true //开启分页
-            // ,parseData: function (res) {
-            //         // console.log(res);
-            //         return{
-            //             "code":0,
-            //             "msg":"",
-            //             //数据库查到的多少条数据
-            //             "count":"1000",
-            //             "data":res
-            //         }
-            // }
             ,cols: [
                 [ //表头
-                {field: 'id', title: 'ID', width:180, sort: true, fixed: 'left'}
-                ,{field: 'username', title: '用户名', width:180}
-                ,{field:'password',title: '密码', width:180}
-                ,{field: 'root', title: '管理员', width:180, sort: true}
+                    {field: 'id', title: 'ID', width:180, sort: true, fixed: 'left'}
+                    ,{field: 'bookName', title: '书名', width:180}
+                    ,{field:'bookPrice',title: '价格', width:180}
+                    ,{field: 'publishDate', title: '出版日期', width:180, sort: true}
+                    ,{field: 'publisher', title: '出版商', width:180, sort: true}
+                    ,{field: 'isbn', title: 'ISBN号', width:180, sort: true}
+                    ,{field: 'num', title: '数量', width:180, sort: true}
 
-            ]
+                ]
             ]
         });
 
