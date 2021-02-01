@@ -31,4 +31,6 @@ public class Book {
 
     private Integer num;
 
+    private String author;
+
 }
