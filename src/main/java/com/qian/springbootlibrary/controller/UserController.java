@@ -6,10 +6,8 @@ import com.qian.springbootlibrary.service.UserService;
 import com.qian.springbootlibrary.vo.RegisterUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -24,65 +22,6 @@ public class UserController {
     @Autowired
     User user;
 
-    //登录
-    @RequestMapping("/login")
-    public String dashBoard(@RequestParam("username")String username, @RequestParam("password")String password, HttpSession httpSession){
-//        userServiceImpl.isUserLogin(username,)
-//        User user = userServiceImpl.getUserByUserName(username);
-//        if(user == null){
-//            httpSession.setAttribute("msg","无此用户");
-//            httpSession.setAttribute("create",null);
-//            return "login";
-//        }
-//        if (user.getPassword().equals(password)){
-//           httpSession.setAttribute("user",user);
-//           httpSession.setAttribute("username",user.getUsername());
-//           httpSession.setAttribute("osName",System.getProperty("os.name"));
-//           httpSession.setAttribute("osVersion",System.getProperty("os.version"));
-//           return "main";
-//        }else {
-//            httpSession.setAttribute("msg","密码输入错误");
-////            System.out.println("已存入model");
-//        }
-//        return "login";
-        Map<String, Object> map = userServiceImpl.isUserLogin(username, password);
-        User user = (User) map.get("user");
-        if((boolean)map.get("isUserExist")){
-             if ((boolean)map.get("isPasswordCorrect")){
-                 httpSession.setAttribute("user",user);
-                 httpSession.setAttribute("username",user.getUsername());
-                 httpSession.setAttribute("osName",System.getProperty("os.name"));
-                 httpSession.setAttribute("osVersion",System.getProperty("os.version"));
-                 return "main";
-             }
-             httpSession.setAttribute("msg","密码输入错误");
-             return "login";
-         }else {
-            httpSession.setAttribute("msg","无此用户");
-            httpSession.setAttribute("create",null);
-            return "login";
-        }
-    }
-    //登出
-    @RequestMapping("/logout")
-    public String logOut(HttpSession session){
-        session.removeAttribute("user");
-        session.setAttribute("logout","登出成功");
-        session.setAttribute("msg",null);
-        return "login";
-    }
-
-    @RequestMapping("/tousertables")
-    public String userTables(){
-        return "usertables";
-    }
-
-    @RequestMapping("/touserinfo")
-    public String toSetPersonInformation(Model model){
-        model.addAttribute("userinfo",new UserInfo());
-        return "userinfo";
-    }
-
     @RequestMapping("/setuserinfo")
     public String setUserInfo(@ModelAttribute(value = "userinfo") UserInfo userInfo,HttpSession httpSession){
         //为了获取用户的id
@@ -96,7 +35,7 @@ public class UserController {
             System.out.println(userInfo);
             userServiceImpl.updateUserInfo(map);
             httpSession.setAttribute("msg","修改用户信息成功");
-            return "main";
+            return "/system/main";
         }
         userInfo.setId(user.getId());
         map.put("personal_id",user.getId());
@@ -105,14 +44,9 @@ public class UserController {
         userServiceImpl.addUserInfo(userInfo);
         userServiceImpl.setUserPersonalId(map);
         httpSession.setAttribute("msg","添加用户信息成功");
-        return "main";
+        return "/system/main";
     }
 
-    @RequestMapping("/toregister")
-    public String toRegister(Model model){
-        model.addAttribute("userinfo",new RegisterUser());
-        return "register";
-    }
 
     @RequestMapping("/register")
     public String getRegister(@ModelAttribute(value = "userinfo") RegisterUser registerUser,HttpSession httpSession){
@@ -131,20 +65,6 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping("/tomangeusertables")
-    public String toManageUserTables(){
-        return "manageusertables";
-    }
-
-    //管理员修改其他人的信息
-    @RequestMapping("/toedituserinfo")
-    public String toEditUserInfo(int id, HttpSession httpSession){
-        System.out.println(id);
-        httpSession.setAttribute("id",id);
-        return "member-edit";
-    }
-
-
     @RequestMapping("/resetuserinfo")
     public String resetUserInfo(@ModelAttribute(value = "userinfo") UserInfo userInfo, HttpSession httpSession){
         HashMap<String, Object> map = new HashMap<>();
@@ -155,7 +75,7 @@ public class UserController {
         map.put("sex",userInfo.getSex());
         userServiceImpl.updateUserInfo(map);
         httpSession.setAttribute("msg","修改用户信息成功");
-        return "manageusertables";
+        return "/system/manageusertables";
     }
 
 

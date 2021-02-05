@@ -1,8 +1,9 @@
-package com.qian.springbootlibrary.service;
+package com.qian.springbootlibrary.service.impl;
 
 import com.qian.springbootlibrary.mapper.UserMapper;
 import com.qian.springbootlibrary.pojo.User;
 import com.qian.springbootlibrary.pojo.UserInfo;
+import com.qian.springbootlibrary.service.UserService;
 import com.qian.springbootlibrary.vo.ViewUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
