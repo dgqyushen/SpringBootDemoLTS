@@ -20,7 +20,7 @@ public class BookController {
     public String addBook(@ModelAttribute(value = "book")Book book){
 //        System.out.println(book);
         bookServiceImpl.addBook(book);
-        return "/system/booktables";
+        return "system/booktables";
     }
 
 

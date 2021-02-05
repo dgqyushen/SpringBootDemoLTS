@@ -35,7 +35,7 @@ public class UserController {
             System.out.println(userInfo);
             userServiceImpl.updateUserInfo(map);
             httpSession.setAttribute("msg","修改用户信息成功");
-            return "/system/main";
+            return "system/main";
         }
         userInfo.setId(user.getId());
         map.put("personal_id",user.getId());
@@ -44,7 +44,7 @@ public class UserController {
         userServiceImpl.addUserInfo(userInfo);
         userServiceImpl.setUserPersonalId(map);
         httpSession.setAttribute("msg","添加用户信息成功");
-        return "/system/main";
+        return "system/main";
     }
 
 
@@ -75,7 +75,7 @@ public class UserController {
         map.put("sex",userInfo.getSex());
         userServiceImpl.updateUserInfo(map);
         httpSession.setAttribute("msg","修改用户信息成功");
-        return "/system/manageusertables";
+        return "system/manageusertables";
     }
 
 

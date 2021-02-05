@@ -23,10 +23,11 @@ public class RouterController {
 
     @RequestMapping("/tomain")
     public String main(){
-        return "/system/main";
+        return "main";
     }
 
     //登录
+
     @RequestMapping("/login")
     public String dashBoard(@RequestParam("username")String username, @RequestParam("password")String password, HttpSession httpSession){
         Map<String, Object> map = userServiceImpl.isUserLogin(username, password);
@@ -37,7 +38,8 @@ public class RouterController {
                 httpSession.setAttribute("username",user.getUsername());
                 httpSession.setAttribute("osName",System.getProperty("os.name"));
                 httpSession.setAttribute("osVersion",System.getProperty("os.version"));
-                return "/system/main";
+
+                return "system/main";
             }
             httpSession.setAttribute("msg","密码输入错误");
             return "login";
@@ -58,13 +60,13 @@ public class RouterController {
 
     @RequestMapping("/tousertables")
     public String userTables(){
-        return "/system/usertables";
+        return "system/usertables";
     }
 
     @RequestMapping("/touserinfo")
     public String toSetPersonInformation(Model model){
         model.addAttribute("userinfo",new UserInfo());
-        return "/system/userinfo";
+        return "system/userinfo";
     }
 
     @RequestMapping("/toregister")
@@ -75,7 +77,7 @@ public class RouterController {
 
     @RequestMapping("/tomangeusertables")
     public String toManageUserTables(){
-        return "/system/manageusertables";
+        return "system/manageusertables";
     }
 
     //管理员修改其他人的信息
@@ -83,24 +85,24 @@ public class RouterController {
     public String toEditUserInfo(int id, HttpSession httpSession){
         System.out.println(id);
         httpSession.setAttribute("id",id);
-        return "/system/member-edit";
+        return "system/member-edit";
     }
 
     @RequestMapping("/tobooktables")
     public String toBookTables(){
-        return "/system/booktables";
+        return "system/booktables";
     }
 
     @RequestMapping("/toaddbook")
     public String toAddBook(){
-        return "/system/addbook";
+        return "system/addbook";
     }
 
     @RequestMapping("/todeletebook")
     public String delBook(){
 //        System.out.println(book);
 
-        return "/system/deletebook";
+        return "system/deletebook";
     }
 
 

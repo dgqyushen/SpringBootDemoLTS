@@ -4,6 +4,7 @@ import com.qian.springbootlibrary.pojo.User;
 import com.qian.springbootlibrary.service.UserService;
 import com.qian.springbootlibrary.vo.ViewUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+@CrossOrigin
 @RestController
 public class RestfulUserController {
 
@@ -33,16 +35,18 @@ public class RestfulUserController {
         return map;
     }
 
+
     @RequestMapping("/getallviewusers")
     public Map<String,Object> getAllViewUsers(){
         Map map = new ConcurrentHashMap<String,Object>();
         List<ViewUser> allViewUser = userServiceImpl.getAllViewUser();
         map.put("code",0);
-        map.put("msg","");
+        map.put("msg"," ");
         map.put("count",allViewUser.size());
         map.put("data",allViewUser);
         return map;
     }
+
 
     @RequestMapping("/deleteuser")
     public Map<String,Object> deleteUser(int id){

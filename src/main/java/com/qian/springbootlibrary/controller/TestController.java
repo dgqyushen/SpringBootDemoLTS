@@ -8,6 +8,6 @@ public class TestController {
 
     @RequestMapping("/test")
     public String test(){
-        return "/system/member-edit";
+        return "member-edit";
     }
 }
