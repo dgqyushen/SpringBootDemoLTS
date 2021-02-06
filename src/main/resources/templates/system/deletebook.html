@@ -61,9 +61,10 @@
 
         layui.element.init();
 
+        let t_height = layui.jquery(window).height()-190;
         table.render({
             elem: '#demo'
-            ,height: 565
+            ,height: t_height   //565
             ,url: 'http://localhost:8080/getallbooks' //数据接口
             ,page: true //开启分页
             ,cols: [

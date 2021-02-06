@@ -42,10 +42,10 @@
             ,table = layui.table;
 
         layui.element.init();
-
+        let t_height = layui.jquery(window).height()-190;
         table.render({
             elem: '#demo'
-            ,height: 580
+            ,height: t_height
             ,url: 'http://localhost:8080/getallusers' //数据接口
             ,page: true //开启分页
             // ,parseData: function (res) {
