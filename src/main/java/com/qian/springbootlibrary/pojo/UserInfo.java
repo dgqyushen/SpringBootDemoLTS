@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserInfo {
-    private int id;
+    private Integer id;
     private String city;
     private String email;
     private String sex;

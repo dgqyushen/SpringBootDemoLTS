@@ -72,7 +72,7 @@
         table.render({
             elem: '#demo'
             ,height: 565
-            ,url: 'http://120.79.185.240:8080/getallviewusers' //数据接口
+            ,url: 'http://localhost:8080/getallviewusers' //数据接口
             ,page: true //开启分页
             // ,parseData: function (res) {
             //     // console.log(res);
@@ -142,7 +142,7 @@
                 });
             } else if(obj.event === 'edit'){
                 let temp_id = data.id;
-                let str =  '/toedituserinfo?id='+temp_id;
+                let str =  '/system/toedituserinfo?id='+temp_id;
                 // alert(str);
                 // alert("进入了这里");
 

@@ -10,6 +10,7 @@
 //
 //public class UserRealm extends AuthorizingRealm {
 //
+//
 //    @Autowired
 //    private UserService userServiceImpl;
 //
@@ -31,12 +32,28 @@
 //     */
 //    @Override
 //    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+////        userMapper.getUserByUserName()
 //        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
 //        User user = userServiceImpl.getUserByUserName(token.getUsername());
-//        if (user != null){
-//            return new SimpleAuthenticationInfo(user,user.getPassword(),getName());
+//        if (user==null){
+//            throw new UnknownAccountException();
 //        }
 //
-//        return null;
+////        String name = "root";
+////        String password = "123456";
+//
+////        if (!token.getUsername().equals(name)){
+////            throw new UnknownAccountException();
+////        }
+//
+////        new UsernamePasswordToken()
+//
+////        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
+////        User user = userServiceImpl.getUserByUserName(token.getUsername());
+////        if (user != null){
+////            return new SimpleAuthenticationInfo(user,user.getPassword(),getName());
+////        }
+//
+//        return new SimpleAuthenticationInfo("",user.getPassword(),"");
 //    }
 //}

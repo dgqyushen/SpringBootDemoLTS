@@ -29,4 +29,12 @@ public interface UserService {
     List<ViewUser> getAllViewUser();
 
     int updateUserInfo(Map map);
+
+    List<User> getUserByPageAndSize(int page,int size);
+
+    int selectCount();
+
+    List<ViewUser> getAllViewUserByPageAndSize(int page,int size);
+
+    int selectAllVieUserCount();
 }

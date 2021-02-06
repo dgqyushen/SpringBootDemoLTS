@@ -1,5 +1,6 @@
 package com.qian.springbootlibrary.service.impl;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qian.springbootlibrary.mapper.UserMapper;
 import com.qian.springbootlibrary.pojo.User;
 import com.qian.springbootlibrary.pojo.UserInfo;
@@ -88,5 +89,27 @@ public class UserServiceImpl implements UserService {
     @Override
     public int updateUserInfo(Map map) {
         return userMapper.updateUserInfo(map);
+    }
+
+    @Override
+    public List<User> getUserByPageAndSize(int page, int size) {
+        //定义分页变量
+        Page<User> tempPage = new Page<>(page,size);
+        return userMapper.selectPage(tempPage, null).getRecords();
+    }
+
+    @Override
+    public int selectCount() {
+         return userMapper.selectCount(null);
+    }
+
+    @Override
+    public List<ViewUser> getAllViewUserByPageAndSize(int page, int size) {
+        return userMapper.getAllViewUserByPageAndSize(page,size);
+    }
+
+    @Override
+    public int selectAllVieUserCount() {
+        return userMapper.getAllViewUser().size();
     }
 }

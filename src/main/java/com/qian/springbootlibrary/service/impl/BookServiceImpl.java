@@ -4,6 +4,8 @@ import com.qian.springbootlibrary.dao.BookDao;
 import com.qian.springbootlibrary.pojo.Book;
 import com.qian.springbootlibrary.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,5 +27,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public void addBook(Book book) {
         bookDao.save(book);
+    }
+
+    @Override
+    public List<Book> getBookPageByCondition(Specification<Book> specification, Pageable pageable) {
+        return bookDao.findAll(specification,pageable).getContent();
     }
 }

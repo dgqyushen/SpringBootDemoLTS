@@ -58,6 +58,13 @@ INSERT INTO `library`.`user` (`username`, `password`, `root`) VALUES (#{username
         from `user` a left join userinfo b
         on a.personal_id=b.id;
     </select>
+    <select id="getAllViewUserByPageAndSize" resultType="com.qian.springbootlibrary.vo.ViewUser">
+        SELECT a.id, a.username, a.`password`,a.root,b.city,b.email,b.sex FROM `user` a LEFT JOIN userinfo b ON a.personal_id=b.id
+        LIMIT #{page},#{size}
+
+    </select>
+
+
 
 
 </mapper>

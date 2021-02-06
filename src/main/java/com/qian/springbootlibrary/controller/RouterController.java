@@ -9,10 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
+@RequestMapping("/system")
 @Controller
 public class RouterController {
 
@@ -21,42 +23,67 @@ public class RouterController {
     @Autowired
     User user;
 
+//    @ResponseBody
     @RequestMapping("/tomain")
     public String main(){
-        return "main";
+        return "system/main";
     }
 
     //登录
 
-    @RequestMapping("/login")
-    public String dashBoard(@RequestParam("username")String username, @RequestParam("password")String password, HttpSession httpSession){
-        Map<String, Object> map = userServiceImpl.isUserLogin(username, password);
-        User user = (User) map.get("user");
-        if((boolean)map.get("isUserExist")){
-            if ((boolean)map.get("isPasswordCorrect")){
-                httpSession.setAttribute("user",user);
-                httpSession.setAttribute("username",user.getUsername());
-                httpSession.setAttribute("osName",System.getProperty("os.name"));
-                httpSession.setAttribute("osVersion",System.getProperty("os.version"));
 
-                return "system/main";
-            }
-            httpSession.setAttribute("msg","密码输入错误");
-            return "login";
-        }else {
-            httpSession.setAttribute("msg","无此用户");
-            httpSession.setAttribute("create",null);
-            return "login";
-        }
-    }
-    //登出
-    @RequestMapping("/logout")
-    public String logOut(HttpSession session){
-        session.removeAttribute("user");
-        session.setAttribute("logout","登出成功");
-        session.setAttribute("msg",null);
-        return "login";
-    }
+//    @RequestMapping("/login")
+//    public String dashBoard(@RequestParam("username")String username, @RequestParam("password")String password, HttpSession httpSession){
+//        System.out.println("进来了");
+//        Map<String, Object> map = userServiceImpl.isUserLogin(username, password);
+//        User user = (User) map.get("user");
+//        if((boolean)map.get("isUserExist")){
+//            if ((boolean)map.get("isPasswordCorrect")){
+//                httpSession.setAttribute("user",user);
+//                httpSession.setAttribute("username",user.getUsername());
+//                httpSession.setAttribute("osName",System.getProperty("os.name"));
+//                httpSession.setAttribute("osVersion",System.getProperty("os.version"));
+//
+//                return "system/main";
+//            }
+//            httpSession.setAttribute("msg","密码输入错误");
+//            return "login";
+//        }else {
+//            httpSession.setAttribute("msg","无此用户");
+//            httpSession.setAttribute("create",null);
+//            return "login";
+//        }
+//        Subject subject = SecurityUtils.getSubject();
+//        User user = userServiceImpl.getUserByUserName(username);
+//        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+//        token.setRememberMe(true);
+//
+//        try {
+//            subject.login(token);
+//            if (user!=null){
+//                httpSession.setAttribute("user",user);
+//                httpSession.setAttribute("username",user.getUsername());
+//            }
+//            httpSession.setAttribute("osName",System.getProperty("os.name"));
+//            httpSession.setAttribute("osVersion",System.getProperty("os.version"));
+//            return "system/main";
+//        }catch (UnknownAccountException e){
+//            httpSession.setAttribute("msg","无此用户");
+//            return "login";
+//        }catch (IncorrectCredentialsException e){
+//            httpSession.setAttribute("msg","密码输入错误");
+//            return "login";
+//        }
+
+//    }
+//    //登出
+//    @RequestMapping("/logout")
+//    public String logOut(HttpSession session){
+//        session.removeAttribute("user");
+//        session.setAttribute("logout","登出成功");
+//        session.setAttribute("msg",null);
+//        return "login";
+//    }
 
     @RequestMapping("/tousertables")
     public String userTables(){
@@ -100,8 +127,6 @@ public class RouterController {
 
     @RequestMapping("/todeletebook")
     public String delBook(){
-//        System.out.println(book);
-
         return "system/deletebook";
     }
 

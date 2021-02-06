@@ -1,5 +1,6 @@
 package com.qian.springbootlibrary.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,12 +13,13 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class User {
 
-    private int id;
+    @TableId
+    private Integer id;
     private String username;
     private String password;
-    private boolean root;
+    private Boolean root;
     @Nullable
-    private int personal_id;
+    private Integer personal_id;
 
 
 }
