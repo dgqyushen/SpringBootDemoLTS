@@ -17,6 +17,9 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("defaultWebSecurityManager") DefaultWebSecurityManager defaultWebSecurityManager){
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
         Map<String, String> map = new LinkedHashMap<>();
+        map.put("/static/**","anon");
+        map.put("/login","anon");
+        map.put("/main.html","anon");
         map.put("/system/**","authc");
         bean.setSecurityManager(defaultWebSecurityManager);
         bean.setLoginUrl("/");
@@ -30,6 +33,7 @@ public class ShiroConfig {
     public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("userRealm") UserRealm userRealm){
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(userRealm);
+
         return securityManager;
     }
 

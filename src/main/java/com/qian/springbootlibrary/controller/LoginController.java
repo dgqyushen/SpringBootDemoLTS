@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 //只关注登录登出 不关注具体拦截的路径
 @Controller
@@ -21,6 +20,9 @@ public class LoginController {
 
     @Autowired
     UserService userServiceImpl;
+
+//    @Autowired
+//    RouterController routerController;
 
     //登录
     @RequestMapping("/login")
@@ -39,6 +41,7 @@ public class LoginController {
             }
             httpSession.setAttribute("osName",System.getProperty("os.name"));
             httpSession.setAttribute("osVersion",System.getProperty("os.version"));
+//            routerController.main();
             return "system/main";
         }catch (UnknownAccountException e){
             httpSession.setAttribute("msg","无此用户");
