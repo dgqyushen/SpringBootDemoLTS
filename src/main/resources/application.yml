@@ -37,6 +37,11 @@ spring:
       #        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     database-platform: org.hibernate.dialect.MySQL8Dialect
 
+#  security:
+#    user:
+#      name: root
+#      password: 111111
+
 
 
 #    minIdle: 5
@@ -66,6 +71,5 @@ logging:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
 
 
