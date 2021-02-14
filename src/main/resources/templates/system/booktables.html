@@ -33,6 +33,7 @@
 </div>
 
 <script type="text/javascript" th:src="@{/layui.all.js}" charset="utf-8"></script>
+<script type="text/javascript" th:src="@{/config.js}"></script>
 <script th:inline="javascript">
     ;!function(){
         var form = layui.form
@@ -48,7 +49,7 @@
         table.render({
             elem: '#demo'
             ,height: t_height
-            ,url: 'http://localhost:8080/getallbooks' //数据接口
+            ,url: target_host+'/getallbooks' //数据接口
             ,page: true //开启分页
             ,cols: [
                 [ //表头

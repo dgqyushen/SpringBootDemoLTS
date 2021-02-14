@@ -46,6 +46,7 @@
     <a class="layui-btn layui-btn-xs" lay-event="edit"  href="javascript:;">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
+<script type="text/javascript" th:src="@{/config.js}"></script>
 
 <script th:inline="javascript">
 
@@ -57,7 +58,7 @@
     //     // alert(str);
     //     // xadmin.open('编辑','/toedituserinfo',600,400);
     // }
-
+    let temp_url = target_host+'/deleteuser'
 
 
 
@@ -75,7 +76,7 @@
         table.render({
             elem: '#demo'
             ,height: t_height
-            ,url: 'http://localhost:8080/getallviewusers' //数据接口
+            ,url: target_host+'/getallviewusers' //数据接口
             ,page: true //开启分页
             // ,parseData: function (res) {
             //     // console.log(res);
@@ -131,7 +132,7 @@
                     obj.del();
                     // alert(data.id);
                     //发送后端请求
-                    axios.get("http://localhost:8080/deleteuser",{
+                    axios.get(temp_url,{
                         params: {
                             id: data.id
                         }

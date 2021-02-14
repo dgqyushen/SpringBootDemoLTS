@@ -33,4 +33,14 @@ public class BookServiceImpl implements BookService {
     public List<Book> getBookPageByCondition(Specification<Book> specification, Pageable pageable) {
         return bookDao.findAll(specification,pageable).getContent();
     }
+
+    @Override
+    public Book getBookById(int id) {
+        return bookDao.getBookById(id);
+    }
+
+    @Override
+    public void updateBook(Book book) {
+        bookDao.save(book);
+    }
 }

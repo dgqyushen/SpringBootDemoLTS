@@ -9,4 +9,6 @@ import java.util.List;
 public interface BookDao extends JpaRepository<Book,Integer>, JpaSpecificationExecutor<Book> {
     @Override
     List<Book> findAll();
+
+    Book getBookById(Integer id);
 }

@@ -1,8 +1,10 @@
 package com.qian.springbootlibrary.controller;
 
-import com.qian.springbootlibrary.dao.BookDao;
 import com.qian.springbootlibrary.pojo.Book;
+import com.qian.springbootlibrary.pojo.User;
 import com.qian.springbootlibrary.service.BookService;
+import com.qian.springbootlibrary.service.UserBookService;
+import com.qian.springbootlibrary.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
@@ -15,6 +17,7 @@ import javax.persistence.criteria.Predicate;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -28,8 +31,13 @@ public class RestfulBookController {
     BookService bookServiceImpl;
     @Autowired
     HttpSession httpSession;
+
     @Autowired
-    BookDao bookDao;
+    UserService userServiceImpl;
+
+    @Autowired
+    UserBookService userBookServiceImpl;
+
 
 
     @RequestMapping("/getallbooks")
@@ -62,4 +70,63 @@ public class RestfulBookController {
         bookServiceImpl.delBookById(id);
         httpSession.setAttribute("msg","删除书本成功");
     }
+
+    @RequestMapping("/borrowbook")
+    public Map<String,Object> borrowBook(int id){
+        HashMap<String, Object> map = new HashMap<>();
+        Book book = bookServiceImpl.getBookById(id);
+        User user = (User) httpSession.getAttribute("user");
+//        System.out.println(user);
+//        System.out.println(book);
+        ArrayList<String> borrowBookList = userBookServiceImpl.getAllBorrowBookByUserName(user.getUsername());
+        if (borrowBookList.contains(book.getBookName())){
+            map.put("msg","你已经借过这本书了！");
+        }else {
+//            borrowBookList.add(book.getBookName());
+            book.setNum(book.getNum()-1);
+            borrowBookList.add(book.getBookName());
+//            httpSession.setAttribute("bookList",borrowBookList);
+            bookServiceImpl.updateBook(book);
+            //存书操作
+            userServiceImpl.borrowBooks(book.getBookName(),user.getUsername());
+            map.put("msg","借书成功");
+        }
+        return map;
+
+
+//        //先保证用户借到书
+//        bookList.add(book);
+//        book.setNum(book.getNum()-1);
+//        bookDao.save(book);
+//        String str = bookList.toString();
+//        userServiceImpl.updateBookListByUserName(str,user.getUsername());
+    }
+
+    @RequestMapping("/returnbook")
+    public Map<String,Object> returnBook(int id){
+        HashMap<String, Object> map = new HashMap<>();
+        User user = (User) httpSession.getAttribute("user");
+        ArrayList<String> bookList = userBookServiceImpl.getAllBorrowBookByUserName(user.getUsername());
+        if (bookList==null){
+            System.out.println("======================================");
+            System.out.println("数组为null");
+        }
+        Book book = bookServiceImpl.getBookById(id);
+        if (bookList.contains(book.getBookName())){
+            bookList.remove(book.getBookName());
+            book.setNum(book.getNum()+1);
+            bookServiceImpl.updateBook(book);
+            userBookServiceImpl.deleteByBookNameAndUserName(book.getBookName(),user.getUsername());
+            httpSession.setAttribute("bookList",bookList);
+            map.put("msg","归还成功");
+
+
+        }else {
+            map.put("msg","你没有借过此书或已经归还过了");
+        }
+        return map;
+
+
+    }
+
 }

@@ -83,7 +83,7 @@ public class RouterController {
 //    }
 
     @RequestMapping("/tousertables")
-    public String userTables(){
+    public String toUserTables(){
         return "system/usertables";
     }
 
@@ -123,8 +123,13 @@ public class RouterController {
     }
 
     @RequestMapping("/todeletebook")
-    public String delBook(){
+    public String toDelBook(){
         return "system/deletebook";
+    }
+
+    @RequestMapping("/toborrowbook")
+    public String toBorrowBook(){
+        return "system/borrow_book";
     }
 
 

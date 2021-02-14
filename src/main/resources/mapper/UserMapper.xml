@@ -34,6 +34,11 @@ INSERT INTO `library`.`user` (`username`, `password`, `root`) VALUES (#{username
 
 
     </update>
+    <update id="updateBookListByUsername">
+        update library.user
+        set book_list=#{bookList}
+        where username = #{username};
+    </update>
 
     <!--    <update id="setUserPersonalId" parameterType="">-->
 <!--        -->

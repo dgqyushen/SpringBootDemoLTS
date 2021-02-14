@@ -1,5 +1,6 @@
 package com.qian.springbootlibrary.service;
 
+import com.qian.springbootlibrary.pojo.Book;
 import com.qian.springbootlibrary.pojo.User;
 import com.qian.springbootlibrary.pojo.UserInfo;
 import com.qian.springbootlibrary.vo.ViewUser;
@@ -37,4 +38,6 @@ public interface UserService {
     List<ViewUser> getAllViewUserByPageAndSize(int page,int size);
 
     int selectAllVieUserCount();
+
+    int borrowBooks(String bookName,String usernmae);
 }

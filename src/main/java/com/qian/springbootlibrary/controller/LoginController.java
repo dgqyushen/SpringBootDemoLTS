@@ -78,6 +78,8 @@ public class LoginController {
     //登出
     @RequestMapping("/logout")
     public String logOut(HttpSession session){
+//        SecurityUtils.getSubject().logout();
+//        subject.logout();
         session.removeAttribute("user");
         session.setAttribute("logout","登出成功");
         session.setAttribute("msg",null);

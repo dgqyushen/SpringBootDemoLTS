@@ -17,4 +17,8 @@ public interface BookService {
     void addBook(Book book);
 
     public List<Book> getBookPageByCondition(Specification<Book> specification, Pageable pageable);
+
+    public Book getBookById(int id);
+
+    void updateBook(Book book);
 }

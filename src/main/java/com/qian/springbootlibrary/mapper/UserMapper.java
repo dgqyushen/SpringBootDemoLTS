@@ -35,6 +35,8 @@ public interface UserMapper extends BaseMapper<User> {
 
     List<ViewUser> getAllViewUserByPageAndSize(int page,int size);
 
+    int updateBookListByUsername(String bookList,String username);
+
 //    int selectAllVieUserCount();
 
 //    List<ViewUser> getUserByPage(Map map);

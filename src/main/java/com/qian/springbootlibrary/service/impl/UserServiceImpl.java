@@ -1,8 +1,10 @@
 package com.qian.springbootlibrary.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.qian.springbootlibrary.mapper.UserBookMapper;
 import com.qian.springbootlibrary.mapper.UserMapper;
 import com.qian.springbootlibrary.pojo.User;
+import com.qian.springbootlibrary.pojo.UserBook;
 import com.qian.springbootlibrary.pojo.UserInfo;
 import com.qian.springbootlibrary.service.UserService;
 import com.qian.springbootlibrary.vo.ViewUser;
@@ -17,6 +19,9 @@ import java.util.concurrent.ConcurrentHashMap;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    UserBookMapper userBookMapper;
 
     @Override
     public List<User> getAllUser(){
@@ -111,5 +116,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public int selectAllVieUserCount() {
         return userMapper.getAllViewUser().size();
+    }
+
+    @Override
+    public int borrowBooks(String bookName, String username) {
+        return userBookMapper.insert(new UserBook(null,username,bookName));
     }
 }
